@@ -154,7 +154,160 @@ clinical-trial platform.
 │ Database │ Object Storage │ Audit Logs │ Encryption      │
 │ Backup │ Provenance │ Access Control │ Monitoring        │
 └──────────────────────────────────────────────────────────┘
+```
 
----
+## Planned Technology Stack
 
+> The following technologies represent the planned implementation stack and
+> should be updated as the project is finalized and implemented.
 
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Component-based UI system
+
+### Backend
+
+- Node.js
+- NestJS
+- REST APIs
+- Authentication & RBAC
+
+### Data
+
+- PostgreSQL
+- Prisma ORM
+- Object Storage
+
+### AI / Analytics
+
+- Python
+- FastAPI
+- Machine Learning / Risk Scoring
+- Analytics pipelines
+
+### Interoperability
+
+- HL7 FHIR R4
+- CDISC-aligned data structures
+- REST APIs
+
+### Infrastructure
+
+- Docker
+- GitHub Actions
+- Cloud deployment
+
+### Security
+
+- Role-Based Access Control
+- Encryption
+- Audit Logging
+- Secure Authentication
+- Data Minimization
+
+## System Modules
+
+| Module | Purpose |
+|---|---|
+| Study Management | Manage studies, protocols and lifecycle milestones |
+| Site Management | Manage participating research sites and investigators |
+| Participant Management | Screening, enrollment, visits and retention |
+| EDC / eCRF | Capture and validate clinical research data |
+| Ethics Management | Track EC submissions, approvals and renewals |
+| Regulatory Management | Track regulatory activities and deadlines |
+| CTRI Tracking | Manage CTRI-related study information and status |
+| Pharmacovigilance | Capture and manage AE/SAE workflows |
+| Data Quality | Queries, validation and deviation monitoring |
+| Interoperability | FHIR and research-data exchange |
+| AI Risk Engine | Identify operational risk signals |
+| Analytics | Study, site and portfolio intelligence |
+| Reporting | Generate operational and regulatory reports |
+| Audit Trail | Track critical system and data changes |
+| Access Control | Role-based permissions and security |
+
+## User Roles
+
+### Principal Investigator
+
+Study-level oversight, protocol monitoring, safety review and analytics.
+
+### Study Coordinator
+
+Operational study management, participant tracking, visits and queries.
+
+### Site Staff
+
+Participant activities, data capture and site-level tasks.
+
+### Ethics Committee
+
+Review workflows, approvals, renewals and compliance activities.
+
+### Pharmacovigilance Team
+
+AE/SAE review, safety workflows and reporting.
+
+### Regulatory Team
+
+Regulatory submissions, deadlines and compliance tracking.
+
+### Research Leadership
+
+Portfolio-level analytics, study health and institutional insights.
+
+### System Administrator
+
+User management, roles, security and platform configuration.
+
+## Repository Structure
+
+```text
+aiia-clinical-trials-management-system/
+│
+├── apps/
+│   ├── web/                 # Main CTMS web application
+│   ├── admin/               # Administration & configuration
+│   └── api/                 # Backend API
+│
+├── packages/
+│   ├── ui/                  # Shared UI components
+│   ├── types/               # Shared TypeScript types
+│   ├── config/              # Shared configuration
+│   ├── validation/          # Validation schemas
+│   └── workflows/           # Study workflow definitions
+│
+├── services/
+│   ├── ai-engine/           # Risk scoring & intelligence
+│   └── interoperability/    # FHIR/CDISC integration services
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── seed.ts
+│
+├── docs/
+│   ├── architecture/
+│   ├── api/
+│   ├── workflows/
+│   ├── compliance/
+│   └── research/
+│
+├── infrastructure/
+│   ├── docker/
+│   └── deployment/
+│
+├── tests/
+│
+├── .github/
+│   └── workflows/
+│
+├── docker-compose.yml
+├── package.json
+├── pnpm-workspace.yaml
+├── README.md
+├── LICENSE
+└── CONTRIBUTING.md
+```
