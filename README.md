@@ -10,7 +10,7 @@
 
 ---
 
-### From Protocol to Evidence — One Connected Research Platform
+## From Protocol to Evidence — One Connected Research Platform
 ## Overview
 
 The AIIA Clinical Trials Management System (CTMS) is an integrated digital
