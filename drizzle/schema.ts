@@ -1,17 +1,7 @@
 import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
-/**
- * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
- */
 export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
   id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
@@ -22,7 +12,38 @@ export const users = mysqlTable("users", {
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
+export const accessRequests = mysqlTable("accessRequests", {
+  id: int("id").autoincrement().primaryKey(),
+  fullName: varchar("fullName", { length: 160 }).notNull(),
+  officialEmail: varchar("officialEmail", { length: 320 }).notNull(),
+  mobileNumber: varchar("mobileNumber", { length: 32 }).notNull(),
+  researcherId: varchar("researcherId", { length: 80 }).notNull(),
+  institution: varchar("institution", { length: 200 }).notNull(),
+  department: varchar("department", { length: 160 }).notNull(),
+  designation: varchar("designation", { length: 120 }).notNull(),
+  city: varchar("city", { length: 120 }).notNull(),
+  requestedRole: varchar("requestedRole", { length: 80 }).notNull(),
+  researchArea: varchar("researchArea", { length: 240 }).notNull(),
+  siteCentre: varchar("siteCentre", { length: 160 }).notNull(),
+  reason: text("reason").notNull(),
+  status: mysqlEnum("status", ["Pending", "Under Review", "Approved", "Rejected"]).default("Pending").notNull(),
+  assignedStudy: varchar("assignedStudy", { length: 80 }),
+  assignedSite: varchar("assignedSite", { length: 160 }),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"),
+});
+
+export const auditEvents = mysqlTable("auditEvents", {
+  id: int("id").autoincrement().primaryKey(),
+  actorUserId: int("actorUserId"),
+  action: varchar("action", { length: 100 }).notNull(),
+  entityType: varchar("entityType", { length: 80 }).notNull(),
+  entityId: varchar("entityId", { length: 80 }).notNull(),
+  details: text("details"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
-
-// TODO: Add your tables here
+export type AccessRequest = typeof accessRequests.$inferSelect;
+export type InsertAccessRequest = typeof accessRequests.$inferInsert;

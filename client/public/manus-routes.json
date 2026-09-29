@@ -1,6 +1,6 @@
 {
   "routes": [
-    { "path": "/", "title": "Clinical Research Command Centre" },
+    { "path": "/", "title": "AIIA Clinical Research Portal Public Homepage" },
     { "path": "/login", "title": "AIIA Portal Login" },
     { "path": "/dashboard", "title": "Dashboard" },
     { "path": "/studies", "title": "Studies" },
@@ -16,6 +16,6 @@
     { "path": "/reports", "title": "Reports & Analytics" },
     { "path": "/copilot", "title": "AI Research Copilot" },
     { "path": "/notifications", "title": "Notifications" },
-    { "path": "/administration", "title": "Administration" }
+    { "path": "/administration", "title": "Administration & Access Requests" }
   ]
 }

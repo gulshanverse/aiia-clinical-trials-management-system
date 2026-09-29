@@ -8,6 +8,20 @@
       "when": 1788785580464,
       "tag": "0000_initial_users",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1790709713761,
+      "tag": "0001_talented_molly_hayes",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1790709963965,
+      "tag": "0002_chilly_vindicator",
+      "breakpoints": true
     }
   ]
 }

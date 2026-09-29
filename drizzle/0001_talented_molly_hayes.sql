@@ -1,0 +1,21 @@
+CREATE TABLE `accessRequests` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`fullName` varchar(160) NOT NULL,
+	`officialEmail` varchar(320) NOT NULL,
+	`mobileNumber` varchar(32) NOT NULL,
+	`researcherId` varchar(80) NOT NULL,
+	`institution` varchar(200) NOT NULL,
+	`department` varchar(160) NOT NULL,
+	`designation` varchar(120) NOT NULL,
+	`city` varchar(120) NOT NULL,
+	`requestedRole` varchar(80) NOT NULL,
+	`researchArea` varchar(240) NOT NULL,
+	`siteCentre` varchar(160) NOT NULL,
+	`reason` text NOT NULL,
+	`status` enum('Pending','Under Review','Approved','Rejected') NOT NULL DEFAULT 'Pending',
+	`assignedStudy` varchar(80),
+	`assignedSite` varchar(160),
+	`submittedAt` timestamp NOT NULL DEFAULT (now()),
+	`reviewedAt` timestamp,
+	CONSTRAINT `accessRequests_id` PRIMARY KEY(`id`)
+);

@@ -1,8 +1,9 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { answerResearchQuestion, getResearchContext, getRiskSnapshot } from "./researchData";
+import { createAccessRequest, listAccessRequests, listAuditEvents, updateAccessRequest } from "./accessRequests";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -27,6 +28,19 @@ export const appRouter = router({
     ask: protectedProcedure
       .input(z.object({ question: z.string().min(3).max(500), studyId: z.string().optional() }))
       .mutation(({ ctx, input }) => answerResearchQuestion(ctx.user, input.question, input.studyId)),
+  }),
+
+  accessRequests: router({
+    submit: publicProcedure
+      .input(z.object({
+        fullName: z.string().min(2).max(160), officialEmail: z.string().email(), mobileNumber: z.string().min(7).max(32), researcherId: z.string().min(2).max(80), institution: z.string().min(2).max(200), department: z.string().min(2).max(160), designation: z.string().min(2).max(120), city: z.string().min(2).max(120), requestedRole: z.enum(["Principal Investigator", "Research Coordinator", "Site Investigator", "Data Manager", "Regulatory / Ethics", "Pharmacovigilance", "Administrator"]), researchArea: z.string().min(2).max(240), siteCentre: z.string().min(2).max(160), reason: z.string().min(10).max(2000),
+      }))
+      .mutation(({ input }) => createAccessRequest(input)),
+    list: adminProcedure.query(() => listAccessRequests()),
+    review: adminProcedure
+      .input(z.object({ id: z.number().int().positive(), status: z.enum(["Pending", "Under Review", "Approved", "Rejected"]), assignedStudy: z.string().optional(), assignedSite: z.string().optional() }))
+      .mutation(({ ctx, input }) => updateAccessRequest(input.id, input.status, ctx.user.id, input.assignedStudy, input.assignedSite)),
+    audit: adminProcedure.query(() => listAuditEvents()),
   }),
 
   // TODO: add feature routers here, e.g.
