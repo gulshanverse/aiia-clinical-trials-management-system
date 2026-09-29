@@ -1,0 +1,21 @@
+{
+  "routes": [
+    { "path": "/", "title": "Clinical Research Command Centre" },
+    { "path": "/login", "title": "AIIA Portal Login" },
+    { "path": "/dashboard", "title": "Dashboard" },
+    { "path": "/studies", "title": "Studies" },
+    { "path": "/studies/:studyId", "title": "Study Workspace" },
+    { "path": "/participants", "title": "Participants" },
+    { "path": "/participants/:participantId", "title": "Participant Profile" },
+    { "path": "/participants/:participantId/visits/:visitId", "title": "Visit Workflow" },
+    { "path": "/sites", "title": "Sites" },
+    { "path": "/clinical-data", "title": "Clinical Data" },
+    { "path": "/safety", "title": "Safety & Pharmacovigilance" },
+    { "path": "/regulatory", "title": "Regulatory & Ethics" },
+    { "path": "/documents", "title": "Documents" },
+    { "path": "/reports", "title": "Reports & Analytics" },
+    { "path": "/copilot", "title": "AI Research Copilot" },
+    { "path": "/notifications", "title": "Notifications" },
+    { "path": "/administration", "title": "Administration" }
+  ]
+}
