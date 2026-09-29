@@ -16,7 +16,8 @@ export const startLogin = () => {
   const oauthPortalUrl = window.__MANUS_CONFIG__?.oauthPortalUrl;
   const appId = window.__MANUS_CONFIG__?.projectId;
   if (!oauthPortalUrl || !appId) throw new Error("Manus login is not configured");
-  const redirectUri = `${window.location.origin}/api/oauth/callback`;
+  const backendOrigin = (import.meta.env.VITE_API_URL || window.__MANUS_CONFIG__?.apiUrl || window.location.origin).replace(/\/$/, "");
+  const redirectUri = `${backendOrigin}/api/oauth/callback`;
 
   const nonce = crypto.randomUUID();
   document.cookie = `${OAUTH_STATE_COOKIE}=${nonce}; Path=/; Max-Age=600; SameSite=None; Secure`;
